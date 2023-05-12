@@ -10,11 +10,13 @@ final PageMetrics _testPageMetrics = PageMetrics(
   pixels: 5,
   viewportDimension: 10,
   viewportFraction: 1.0,
+  devicePixelRatio: 2.0,
 );
 
 abstract class GestureStateMixin<T extends StatefulWidget> extends State<T>
     with GestureMixin {
   Map<Type, GestureRecognizerFactory>? _gestureRecognizers;
+
   Map<Type, GestureRecognizerFactory>? get gestureRecognizers =>
       _gestureRecognizers;
 
@@ -24,7 +26,9 @@ abstract class GestureStateMixin<T extends StatefulWidget> extends State<T>
   TextDirection? get textDirection => Directionality.maybeOf(context);
 
   Axis get scrollDirection;
+
   bool get canDrag => physics?.shouldAcceptUserOffset(_testPageMetrics) ?? true;
+
   ScrollPhysics? get usedScrollPhysics => _physics;
   ScrollPhysics? _physics;
 
